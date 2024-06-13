@@ -1,4 +1,4 @@
-'use client'
+
 import Form from "./form";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
