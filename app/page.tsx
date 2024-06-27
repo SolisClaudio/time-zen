@@ -1,8 +1,12 @@
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return(
-    
+export default async function Home() {
+  const session = await getServerSession();
+  if (session) redirect("/dashboard")
+      else redirect("/login")
+  return( 
     <div>
       <div className= "bg-black flex min-h-screen flex-col items-center  p-2">
           
@@ -17,4 +21,4 @@ export default function Home() {
       </div>
     </div>
   )
-  }
+}

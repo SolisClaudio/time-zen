@@ -1,8 +1,11 @@
+import Header from "../ui/dashboard/header";
+import Cronometro from "../ui/dashboard/pomodoroTimer";
+
 export default function Page() {
     return (
     <div>
-      <h1>Dashboard</h1>
-      <p>This is the dashboard page</p>
+      <Header />
+      <Cronometro />
     </div>
   );
 }

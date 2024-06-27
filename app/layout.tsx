@@ -22,14 +22,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={Mono.className}>{children}
-        <nav>
-          {!!session &&
-          <Logout />
-          }
-          {!session &&
-          <Link href="/login">Login</Link>
-          }
-        </nav>
       </body>
     </html>
   );
