@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { signOut } from "next-auth/react";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Header() {
     return (
@@ -10,11 +11,14 @@ export default function Header() {
             dark:border-neutral-800 bg-gradient-to-r from-black to-zinc-800">
                 <div className="flex justify-between">
                     <div className = "flex" >
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold ml-2 font-family">TimeZen</h1>
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold ml-2 font-family font-normal">TimeZen</h1>
                         <Image src="/logoBlanco.png" alt="TimeZen Logo" className="object-contain w-6 h-6 md:w-8 md:h-8 lg:w-12 lg:h-12" width={75} height={75}/>
                     </div>
-                    <div className="mx-5 cursor-pointer hover:bg-yellow-800 text-white px-2 py-2 rounded" onClick={() => signOut()}> Logout </div>
+                    <div>
+                        <div className="mx-5 cursor-pointer hover:bg-yellow-800 text-white px-2 py-2 rounded" onClick={() => signOut()}> <LogoutIcon/> </div>
+                    </div>
                 </div>
+                
             </div>
             
     );

@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Mono } from "@/app/ui/fonts";
 import "./globals.css";
 import {getServerSession} from "next-auth";
 import Link from "next/link";
-import Logout from "./logout";
-
-const inter = Inter({ subsets: ["latin"] }); 
+import {Inter} from "@/app/ui/fonts"
+ 
 
 export const metadata: Metadata = {
   title: "TimeZen Pomodoro App",
@@ -21,7 +19,7 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <body className={Mono.className}>{children}
+      <body className={Inter.className}>{children}
       </body>
     </html>
   );
