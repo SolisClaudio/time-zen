@@ -15,7 +15,7 @@ export async function POST(request:Request) {
         }
         const result = await sql `SELECT * FROM users WHERE email = ${email}`
         console.log({ result });
-        if( result.rowCount > 0){
+        if( (result?.rowCount ?? 0) > 0){
             return NextResponse.json("Usuario existente", {status: 400});
         }
 
