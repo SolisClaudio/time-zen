@@ -5,10 +5,13 @@ import Image from "next/image";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { RESPONSE_LIMIT_DEFAULT } from "next/dist/server/api-utils";
+import { useEffect, useState } from "react";   
 
 export default function Form(){
+    const [mensajeError, setMensajeError] = useState('');
     const router = useRouter();
     const handleSubmit = async (e: FormEvent<HTMLFormElement>)=>{
+        setMensajeError('');
         e.preventDefault();
         console.log("Login in...");
         const formData = new FormData(e.currentTarget);
@@ -21,8 +24,7 @@ export default function Form(){
         if(!response?.error){
             router.push("/dashboard");
             router.refresh();
-
-        }
+        } else setMensajeError("email or password incorrect");
 
     };
     return(
@@ -51,10 +53,11 @@ export default function Form(){
                     </label >
                 </div>
             </div> 
-            
+            <p className= "text-red-900 font-black">{mensajeError}</p>
             <div className="mt-2 z-11 flex-row-reverse left-0 top-0 flex ">
                 <button type="submit" className="left-0 top-0 flex  text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 ">Ingresar</button>
             </div>
+            
 
             <p className="mt-6 text-center text-white">
                 ¿No tienes una cuenta? <a href="/register" className="text-blue-500 hover:text-blue-700 font-bold">Registrate</a>

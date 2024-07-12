@@ -15,7 +15,7 @@ export const digitalClock = Roboto_Mono ({
                                 
 export const Inter = Inconsolata ({
                                     subsets: ['latin'],
-                                    weight: [ '200', '400', '600'],
+                                    weight: [ '200', '400', '600', '900'],
                                 });
 
 
