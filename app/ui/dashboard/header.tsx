@@ -8,7 +8,7 @@ export default function Header() {
     return (
             <div className="z-11  left-0 top-0 grid w-full border-b border-gray-300 
             pb-3 pt-6 backdrop-blur-2xl 
-            dark:border-neutral-800 bg-gradient-to-r from-black to-zinc-800">
+            border-neutral-800 bg-gradient-to-r from-black to-zinc-800">
                 <div className="flex justify-between">
                     <div className = "flex" >
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold ml-2 font-family font-normal">TimeZen</h1>

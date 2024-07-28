@@ -15,6 +15,7 @@ const handler = NextAuth({
     providers: [
         CredentialsProvider({
             credentials: {
+                id: {},
                 email: {},
                 password: {}
               },
@@ -25,7 +26,6 @@ const handler = NextAuth({
                     `;
                 const user = response.rows[0];
                 const passwordMatch = await compare(credentials?.password || "", user.password);
-                console.log({passwordMatch});
 
                 if(passwordMatch){
                     return {
@@ -36,7 +36,7 @@ const handler = NextAuth({
                 return null;
               }
         })
-    ]
+    ],
 })
 
 export {handler as GET, handler as POST};

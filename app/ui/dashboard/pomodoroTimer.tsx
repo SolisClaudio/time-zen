@@ -1,20 +1,34 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { digitalClock } from '@/app/ui/fonts';
+import { getServerSession } from 'next-auth';
 
 
 
 type state = 'working' | 'shortBreak' | 'longBreak' | 'paused' | 'finished';
 
+const updateStats = async (time: number) => {
+  const response = await fetch('/api/updateStats', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      duration: time,
+    }),
+  });
+  const data = await response.json();
+  console.log(data);
+}
 
 const TaskTimer = () => {
-  const [time, setTime] = useState(1500);
+  const Trabajo = 10;
+  const [time, setTime] = useState(Trabajo);
   const [isRunning, setIsRunning] = useState(false);
   const [state , setState] = useState<state>('working');
   const [contadorPeriodos, setContadorPeriodos] = useState(0);
   const DescansoCorto = 180;
   const DescansoLargo = 600;
-  const Trabajo = 1500;
 
 
   useEffect(() => {
@@ -28,23 +42,24 @@ const TaskTimer = () => {
               setState('shortBreak');
               setIsRunning(false);
               setContadorPeriodos(contadorPeriodos + 1);
+              updateStats(Trabajo);
               return DescansoCorto; // Tiempo para el descanso corto
             } else if (state === 'working' && contadorPeriodos === 2) {
-              setState('longBreak');
-              setIsRunning(false);
-              setContadorPeriodos(0);
-              return DescansoLargo; // Tiempo para el descanso largo
-            } else if (state === 'shortBreak') {
-              setState('working');
-              setIsRunning(false);
-              return Trabajo; // Tiempo para trabajar nuevamente
-            } else if (state === 'longBreak') {
-              setTime(DescansoLargo);
-              setState('working');
-              setIsRunning(false);
-              setIsRunning(false);
-              setContadorPeriodos(0);
-            }
+                      setState('longBreak');
+                      setIsRunning(false);
+                      setContadorPeriodos(0);
+                      return DescansoLargo; // Tiempo para el descanso largo
+                    } else if (state === 'shortBreak') {
+                              setState('working');
+                              setIsRunning(false);
+                              return Trabajo; // Tiempo para trabajar nuevamente
+                            } else if (state === 'longBreak') {
+                                        setTime(DescansoLargo);
+                                        setState('working');
+                                        setIsRunning(false);
+                                        setIsRunning(false);
+                                        setContadorPeriodos(0);
+                            }
             return -1; //Solamente para que no de error prev time
           } else {
             return prevTime - 1;
@@ -86,11 +101,13 @@ const TaskTimer = () => {
           </button>
           <button className="mx-5 bg-gray-800 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transition duration-300" 
               onClick={() => {
-                setTime(1500)
+                setTime(Trabajo)
                 setIsRunning(false)
+
                 }}>Restart</button>              
         </div>  
       </div>
+      
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function Form(){
 
     };
     return(
-        <form onSubmit={handleSubmit} className="w-full max-w-sm p-6 bg-gradient-to-b from-zinc-800 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800  lg:static   rounded-xl lg:border  lg:p-4 mt-10">
+        <form onSubmit={handleSubmit} className="w-full max-w-sm p-6 bg-gradient-to-b from-zinc-800 pb-6 pt-8 backdrop-blur-2xl border-neutral-800  lg:static   rounded-xl lg:border  lg:p-4 mt-10">
 
             <div className="w-80 mt-7">
                 <div className="relative w-full min-w-[200px] h-10">
@@ -55,7 +55,7 @@ export default function Form(){
             </div> 
             <p className= "text-red-900 font-black">{mensajeError}</p>
             <div className="mt-2 z-11 flex-row-reverse left-0 top-0 flex ">
-                <button type="submit" className="left-0 top-0 flex  text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 ">Ingresar</button>
+                <button type="submit" className="left-0 top-0 flex  text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 bg-gray-800 hover:bg-gray-700 focus:ring-gray-700 border-gray-700 ">Ingresar</button>
             </div>
             
 
