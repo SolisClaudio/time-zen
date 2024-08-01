@@ -17,12 +17,12 @@ const updateStats = async (time: number) => {
       duration: time,
     }),
   });
-  const data = await response.json();
-  console.log(data);
+  //const data = await response.json();
+  //console.log(data);
 }
 
 const TaskTimer = () => {
-  const Trabajo = 10;
+  const Trabajo = 2 ;
   const [time, setTime] = useState(Trabajo);
   const [isRunning, setIsRunning] = useState(false);
   const [state , setState] = useState<state>('working');
@@ -30,18 +30,19 @@ const TaskTimer = () => {
   const DescansoCorto = 180;
   const DescansoLargo = 600;
 
+  
 
   useEffect(() => {
     let interval:any; 
-  
+    let ignore = false;
     if (isRunning) {
       interval = setInterval(() => {
         setTime((prevTime) => {
           if (prevTime === 0) {
             if (state === 'working' && contadorPeriodos < 2) {
-              setState('shortBreak');
               setIsRunning(false);
-              setContadorPeriodos(contadorPeriodos + 1);
+              setState('shortBreak');
+              setContadorPeriodos((prev) => prev + 1);
               updateStats(Trabajo);
               return DescansoCorto; // Tiempo para el descanso corto
             } else if (state === 'working' && contadorPeriodos === 2) {
@@ -57,7 +58,6 @@ const TaskTimer = () => {
                                         setTime(DescansoLargo);
                                         setState('working');
                                         setIsRunning(false);
-                                        setIsRunning(false);
                                         setContadorPeriodos(0);
                             }
             return -1; //Solamente para que no de error prev time
@@ -71,7 +71,7 @@ const TaskTimer = () => {
     }
   
     return () => clearInterval(interval);
-  }, [isRunning, state, contadorPeriodos]);
+  }, [isRunning]);
   
 
 
@@ -105,11 +105,11 @@ const TaskTimer = () => {
                 setIsRunning(false)
 
                 }}>Restart</button>              
-        </div>  
+        </div>
       </div>
       
     </div>
   );
 }
-
+ 
 export default TaskTimer;
